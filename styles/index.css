@@ -142,6 +142,11 @@ main {
     gap: 20px;
 }
 /* menu view */
+.menu-view__objects {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 .menu-view-container{
     min-width: 60%;
     min-height: 300px;
@@ -260,6 +265,9 @@ main {
     font-size: 1.6rem;
     border-radius: 10px;
 }
+
+
+
 
 .inactive {
     display: none;
