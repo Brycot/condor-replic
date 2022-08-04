@@ -1,0 +1,266 @@
+:root {
+    --background-color: #121213;
+    --blue-primary: #0064FF;
+    --black: #0C0C0D;
+    --Gray-one: #778899;
+    --red: #DA1C3D;
+    --green: #18DB58;
+    --violet: #6326F9;
+    --gray-secondary: #303C48;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 8vh;
+    padding: 6px;
+    border-bottom: 2px var(--gray-secondary) solid;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
+.header-container .header-image {
+    width: 60px;
+}
+main {
+    width: 100%;
+    height: 92vh;
+}
+.main-title__container {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.main-title__container h1{
+    font-size: 2.4rem;
+    color: #fff;
+    line-height: 2.6rem;
+}
+.main-title__container p {
+    font-size: 1.2rem;
+    color: var(--Gray-one);
+    line-height: 1.8rem;
+}
+.buttons_section-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.buttons-primarys {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 260px;
+    height: 60px;
+    background-color: #0064FF;
+    border-radius: 10px;
+    font-size: 2.4rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    border: 1px var(--blue-primary) solid;
+    cursor: pointer;
+    -webkit-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.301);
+    -moz-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.301);
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.301);
+}
+.buttons-primarys:hover {
+    -webkit-box-shadow: 0px 0px 13px 0px rgba(0,100,255,1);
+    -moz-box-shadow: 0px 0px 13px 0px rgba(0,100,255,1);
+    box-shadow: 0px 0px 13px 0px rgba(0,100,255,1);
+}
+.buttons-primarys:active {
+    background-color: var(--background-color);
+}
+.buttons-primarys img {
+    width: 44px;
+    height: 44px;
+}
+
+/* buttons login */
+.forms {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.input-primary {
+    background-color: var(--background-color);
+    border: 2px solid var(--blue-primary);
+    width: 260px;
+    height: 60px;
+    border-radius: 10px;
+    padding: 10px;
+    color: #fff;
+    font-size: 1.6rem;
+    outline: none;
+}
+.input-primary::placeholder {
+    color: var(--Gray-one);
+    font-size: 1.6rem;
+    font-weight: lighter;
+}
+.input-primary:focus {
+    -webkit-box-shadow: 0px 0px 13px 0px rgba(0,100,255,1);
+    -moz-box-shadow: 0px 0px 13px 0px rgba(0,100,255,1);
+    box-shadow: 0px 0px 13px 0px rgba(0,100,255,1);
+}
+/* menu button */
+.menu-container {
+    min-width: 30%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+/* menu view */
+.menu-view-container{
+    min-width: 60%;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.menu-view-student {
+    min-width: 340px;
+    max-width: 500px;
+    border: 2px solid var(--gray-secondary);
+    border-radius: 10px;
+    padding: 10px;
+    height: auto;
+    background-color: var(--background-color);
+    -webkit-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.644);
+    -moz-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.644);
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.644);
+/* 
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 102, 255, 0.466);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 102, 255, 0.466);
+    box-shadow: 0px 0px 10px 0px rgba(0, 102, 255, 0.466); */
+}
+.menu-view-student__name{
+    color: #fff;
+    font-size: 1.6rem;
+}
+/*menu view teacher*/
+.menu-view-teacher{
+    min-width: 340px;
+    max-width: 500px;
+    border: 2px solid var(--gray-secondary);
+    border-radius: 10px;
+    padding: 10px;
+    height: auto;
+    background-color: var(--background-color);
+    -webkit-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.644);
+    -moz-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.644);
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.644);
+}
+/* botones vista editar */
+.menu-view-student__edite {
+    background-color: var(--green);
+    border: 0;
+    border-radius: 10px;
+    width: 70px;
+    height: 30px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 10px 10px;
+    cursor: pointer;
+}
+.menu-view-student__delete {
+    background-color: var(--red);
+    color: #fff;
+    border: 0;
+    border-radius: 10px;
+    width: 76px;
+    height: 30px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin: 10px 10px;
+    cursor: pointer;
+}
+/*Boton volver a atras*/
+.backHome {
+    background-color: var(--gray-secondary);
+    border: 1px solid var(--blue-primary);
+    color: var(--Gray-one);
+    border-radius: 10px;
+    width: 70px;
+    height: 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 10px 10px;
+    cursor: pointer;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 102, 255, 0.466);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 102, 255, 0.466);
+    box-shadow: 0px 0px 10px 0px rgba(0, 102, 255, 0.466);
+    margin: 10px
+}
+.arroz {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.inputEdit {
+    background-color: var(--background-color);
+    border: 2px solid var(--blue-primary);
+    border-radius: 10px;
+    margin: 0 4px;
+    padding: 6px;
+    color: #fff;
+    outline: none;
+}
+.inputEdit::placeholder {
+    color: var(--Gray-one);
+    font-size: 1.4rem;
+    font-weight: lighter;
+}
+.inputEdit:focus {
+    -webkit-box-shadow: 0px 0px 13px 0px rgba(0,100,255,1);
+    -moz-box-shadow: 0px 0px 13px 0px rgba(0,100,255,1);
+    box-shadow: 0px 0px 13px 0px rgba(0,100,255,1);
+}
+.editButton {
+    background-color: var(--blue-primary);
+    border: 1px solid var(--blue-primary);
+    color: #fff;
+    font-weight: 700;
+    margin: 10px 0;
+    padding: 8px;
+    font-size: 1.6rem;
+    border-radius: 10px;
+}
+
+.inactive {
+    display: none;
+}

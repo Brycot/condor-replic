@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Condor</title>
+</head>
+<body>
+    <header class="header-container">
+        <img class="header-image" src="./assets/images/Escudo_UD.png" alt="Escudo de la universidad">
+    </header>
+    <main>
+        <section class="main-title__container">
+            <section class="main-title-home">
+                <h1 class="main-title"></h1>
+                <p class="paragraph"></p>
+            </section>
+        </section>
+        <button class="backHome">Volver al inicio</button>
+<div class="arroz">
+
+
+        <section class="buttons_section-container">
+                <button class="buttons-primarys button-student" href="#"> <img src="./assets/icons/student.png" alt=""> Estudiantes</button>
+                <button class="buttons-primarys button-teacher" href="#"> <img src="./assets/icons/teacher.png" alt=""> Profesores</button>
+                <button class="buttons-primarys button-administrador" href="#"> <img src="./assets/icons/materia.png" alt=""> Administrador</button>
+        </section>
+
+        <section class="login-container inactive">
+            <form class="login-form forms" id="login-form">
+                <input id="user" autocomplete="off" class="input-primary" type="text" placeholder="Usuario">
+                <input id="password" class="input-primary" type="password" placeholder="Contraseña">
+                <input type="submit" value="Iniciar Sesión" class="buttons-primarys button-login">
+            </form>
+        </section>
+        
+        <section class="menu-container">
+        </section>
+        
+        <section class="menu-view-container inactive">
+            <div class="students-section inactive"></div>
+            <div class="teachers-section inactive"> </div>
+            <div class="matters-section inactive"> </div>
+            <!-- <div class="menu-view-student">
+                <p class="menu-view-student__name">Nombre: Sara Diaz</p>
+                <p class="menu-view-student__name">Codigo de Estudiante: 20221578</p>
+                <p class="menu-view-student__name">Carrera: Diseño Visual</p>
+                <p class="menu-view-student__name">Semestre: 1</p>
+            </div> -->
+        </section>
+</div>
+
+        <script src="./src/node.js"></script>
+        <script src="./src/index.js"></script>
+        <script src="./src/navigation.js"></script>
+    </main>
+</body>
+</html>
