@@ -22,6 +22,7 @@
             </section>
         </section>
         <button class="backHome">Volver al inicio</button>
+        <div class="alert-container"></div>
 <div class="arroz">
 
 
@@ -33,7 +34,7 @@
 
         <section class="login-container inactive">
             <form class="login-form forms" id="login-form">
-                <input id="user" autocomplete="off" class="input-primary" type="text" placeholder="Usuario">
+                <input id="user" autocomplete="off" class="input-primary" type="text" placeholder="Codigo">
                 <input id="password" class="input-primary" type="password" placeholder="Contraseña">
                 <input type="submit" value="Iniciar Sesión" class="buttons-primarys button-login">
             </form>
@@ -53,8 +54,31 @@
                 <p class="menu-view-student__name">Semestre: 1</p>
             </div> -->
         </section>
-</div>
+        
+        <section class="edit-notes-background-container inactive">
+            <div class="edit-notes-container">
+                <h2 class="edit-notes-title">Editar Notas para Juanito</h2>
+                <p class="edit-notes-para">El promedio del estudiante es: </p>
+                <div class="edit-notes-average-container">
+                    <p class="edit-notes-average">40</p>
+                    <p class="edit-notes-result">Aprobado</p>
+                </div>
+                <p class="edit-notes-para">Las notas del estudiante son: </p>
+                <form action="" class="edit-notes-form">
+                    <div class="edit-notes-form-inputs">
+                        <input type="number" value="40" class="edit-notes-input">
+                        <input type="number" value="40" class="edit-notes-input">
+                        <input type="number" value="40" class="edit-notes-input">
+                        <input type="number" value="40" class="edit-notes-input">
+                        <input type="number" value="40" class="edit-notes-input">
+                        <input type="number" value="40" class="edit-notes-input">
+                    </div>
+                    <input type="submit" value="GUARDAR NOTAS" class="edit-notes-submit">
+                </form>
+            </div>
+        </section>
 
+    </div>
         <script src="./src/node.js"></script>
         <script src="./src/index.js"></script>
         <script src="./src/navigation.js"></script>

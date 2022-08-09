@@ -1,5 +1,7 @@
 :root {
     --background-color: #121213;
+    --background-color-input: #0b0b0c;
+    --background-color-transparent: #121213d0;
     --blue-primary: #0064FF;
     --black: #0C0C0D;
     --Gray-one: #778899;
@@ -7,6 +9,8 @@
     --green: #18DB58;
     --violet: #6326F9;
     --gray-secondary: #303C48;
+    --white-color: #fff;
+    --fail-color: #8c1212;
 }
 
 * {
@@ -111,6 +115,24 @@ main {
     align-items: center;
     gap: 20px;
 }
+.materias-student-create {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    background-color: var(--background-color);
+    min-width: 260px;
+    max-width: 350px;
+    min-height: 60px;
+    border-radius: 10px;
+    padding: 10px;
+    color: #fff;
+    font-size: 1.6rem;
+    outline: none;
+}
+.container-options-matters_student {
+    display: flex;
+    gap: 10px;
+}
 .input-primary {
     background-color: var(--background-color);
     border: 2px solid var(--blue-primary);
@@ -121,6 +143,7 @@ main {
     color: #fff;
     font-size: 1.6rem;
     outline: none;
+    display: inherit;
 }
 .input-primary::placeholder {
     color: var(--Gray-one);
@@ -265,9 +288,176 @@ main {
     font-size: 1.6rem;
     border-radius: 10px;
 }
+.menu-view-teacher__edite-notes {
+    width: 100%;
+    height: 45px;
+    background-color: var(--green);
+    border: 1px solid var(--green);
+    border-radius: 10px;
+    font-size: 1.6rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--background-color-input);
+    cursor: pointer;
+    margin-top: 10px;
+}
+.menu-view-teacher__edite-notes:hover {
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(24, 219, 89, 0.747);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(24, 219, 89, 0.747);
+    box-shadow: 0px 0px 10px 0px rgba(24, 219, 89, 0.747);
+}
+.menu-view-teacher__edite-notes:active {
+    background-color: var(--background-color);
+    color: var(--green);
+}
+/* alert message */
 
-
-
+.alert-container {
+    margin: 0 auto;
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 60px;
+    z-index: 10000;
+}
+.alert-message-success {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    min-height: 60px;
+    background-color: var(--green);
+    border-radius: 10px;
+    color: var(--white-color);
+    font-size: 2rem;
+    font-weight: 600;
+}
+.alert-message-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    min-height: 60px;
+    background-color: var(--blue-primary);
+    border-radius: 10px;
+    color: var(--white-color);
+    font-size: 2rem;
+    font-weight: 600;
+}
+.alert-message-fail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    min-height: 60px;
+    background-color: var(--fail-color);
+    border-radius: 10px;
+    color: var(--white-color);
+    font-size: 2rem;
+    font-weight: 600;
+}
+/* Menu Editar Notas */
+.edit-notes-background-container {
+    position: absolute;
+    width: 100vw;
+    height: 92vh;
+    background-color: var(--background-color-transparent);
+    z-index: 1000;
+    display: grid;
+    place-items: center;
+}
+.edit-notes-container {
+    width: 450px;
+    height: 300px;
+    background-color: var(--background-color);
+    -webkit-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.644);
+    -moz-box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.644);
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.644);
+    border: 1px solid var(--gray-secondary);
+    border-radius: 10px;
+    padding: 20px;
+}
+.edit-notes-title {
+    font-size: 2rem;
+    color: var(--white-color);
+}
+.edit-notes-para {
+    font-size: 1.4rem;
+    color: var(--Gray-one);
+}
+.edit-notes-form {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 400px;
+}
+.edit-notes-average-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+.edit-notes-average {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-color-input);
+    border: 1px solid var(--blue-primary);
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    font-size: 2.6rem;
+    color: var(--white-color);
+    outline: none;
+    text-align: center;
+}
+.edit-notes-result {
+    font-size: 2rem;
+    color: var(--green);
+}
+.edit-notes-form-inputs {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.edit-notes-input {
+    background-color: var(--background-color-input);
+    border: 1px solid var(--blue-primary);
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    font-size: 2.6rem;
+    color: var(--white-color);
+    outline: none;
+    padding: 10px;
+}
+.edit-notes-submit {
+    width: 100%;
+    height: 45px;
+    background-color: var(--green);
+    border: 1px solid var(--green);
+    border-radius: 10px;
+    font-size: 1.6rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--background-color-input);
+    cursor: pointer;
+}
+.edit-notes-submit:hover {
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(24, 219, 89, 0.747);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(24, 219, 89, 0.747);
+    box-shadow: 0px 0px 10px 0px rgba(24, 219, 89, 0.747);
+}
+.edit-notes-submit:active {
+    background-color: var(--background-color);
+    color: var(--green);
+}
 
 .inactive {
     display: none;

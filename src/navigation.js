@@ -1,3 +1,5 @@
+
+
 //scroll top smoth
 function smoothscroll(){
     const currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
@@ -10,11 +12,11 @@ function smoothscroll(){
 
 const btnEstudiante = document.querySelector(".button-student");
 btnEstudiante.addEventListener('click', () => {
-    location.hash = "estudiante";
+    location.hash = "estudiante-login";
 });
 const btnProfesor = document.querySelector(".button-teacher");
 btnProfesor.addEventListener('click', () => {
-    location.hash = "profesor";
+    location.hash = "profesor-login";
 });
 const btnAdministrator = document.querySelector(".button-administrador");
 btnAdministrator.addEventListener('click', () => {
@@ -52,6 +54,12 @@ function navigator() {
         administradorTeacher();
     }  else if(location.hash.startsWith('#administrador-materia')) {
         administradorMatter();
+    }  else if(location.hash.startsWith('#profesor-login')) {
+        profesorLogin();
+    }   else if(location.hash.startsWith('#profesor-menu')) {
+        profesorMenu();
+    } else if(location.hash.startsWith('#estudiante-login')) {
+        estudianteLogin();
     }  else {
         homePage();
     }
@@ -69,6 +77,26 @@ function administradorLogin() {
     teachersSection.classList.add('inactive');
     mattersSection.classList.add('inactive');
 }
+function profesorLogin() {
+    menuMain.classList.add('inactive');
+    loginSection.classList.remove('inactive');
+    menuButtons.classList.add('inactive');
+    viewMenu.classList.add('inactive');
+    changeTitle("login","profesor")
+    studentsSection.classList.add('inactive');
+    teachersSection.classList.add('inactive');
+    mattersSection.classList.add('inactive');
+}
+function estudianteLogin() {
+    menuMain.classList.add('inactive');
+    loginSection.classList.remove('inactive');
+    menuButtons.classList.add('inactive');
+    viewMenu.classList.add('inactive');
+    changeTitle("login","Estudiante")
+    studentsSection.classList.add('inactive');
+    teachersSection.classList.add('inactive');
+    mattersSection.classList.add('inactive');
+}
 function homePage() {
     menuMain.classList.remove('inactive');
     loginSection.classList.add('inactive');
@@ -82,6 +110,7 @@ function homePage() {
     title.innerHTML = 'Bienvenido a la plataforma Condor';
     paragraph.innerHTML = `En esta plataforma podra hacer ingreso como estudiante para ver sus notas, Profesor para poder calificar o Administrador`
 }
+// menus
 function administradorMenu() {
     menuMain.classList.add('inactive');
     loginSection.classList.add('inactive');
@@ -92,6 +121,17 @@ function administradorMenu() {
     mattersSection.classList.add('inactive');
     administradorMenuButtons(); 
     changeTitle("administrador-menu");
+}
+function profesorMenu() {
+    menuMain.classList.add('inactive');
+    loginSection.classList.add('inactive');
+    menuButtons.classList.remove('inactive');
+    viewMenu.classList.add('inactive');
+    studentsSection.classList.add('inactive');
+    teachersSection.classList.add('inactive');
+    mattersSection.classList.add('inactive');
+    profesorMenuButtons(); 
+    changeTitle("profesor-menu", 'Profesor');
 }
 function administradorStudent() {
     menuMain.classList.add('inactive');
