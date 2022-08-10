@@ -417,9 +417,13 @@ main {
     outline: none;
     text-align: center;
 }
-.edit-notes-result {
+.edit-notes-result-aproved {
     font-size: 2rem;
     color: var(--green);
+}
+.edit-notes-result-reproved {
+    font-size: 2rem;
+    color: var(--red);
 }
 .edit-notes-form-inputs {
     width: 100%;
@@ -458,7 +462,12 @@ main {
     background-color: var(--background-color);
     color: var(--green);
 }
-
+.notes-matters-final {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--gray-secondary);
+    margin: 20px 0;
+}
 .inactive {
     display: none;
 }

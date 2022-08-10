@@ -18,6 +18,7 @@ class Student {
         carrier,
         semester,
         matters = [],
+        type = 'student',
     }) {
         this.name = name;
         this.password = password;
@@ -25,6 +26,7 @@ class Student {
         this.carrier = carrier;
         this.semester = semester;
         this.matters = matters;
+        this.type = type;
     }
 }
 class Teacher {
@@ -33,11 +35,13 @@ class Teacher {
         password,
         code,
         matters = [],
+        type = 'teacher',
     }) {
         this.name = name;
         this.password = password;
         this.code = code;
         this.matters = matters;
+        this.type = type;
     }
 }
 class Matter {
@@ -49,44 +53,23 @@ class Matter {
         this.name = name;
         this.code = code;
         this.notes = notes;
+        this.average = notes.reduce((a,b)=>a+b);
     }
 }
-//materias
-const algebra = new Matter({name: "Algebra Lineal", code: 1});
-const calculo = new Matter({name: "Calculo Diferencial", code: 2});
-mattersArray.push(algebra);
-mattersArray.push(calculo);
-//admin
+ //materias
+ const algebra = new Matter({name: "Algebra Lineal", code: 1});
+ const calculo = new Matter({name: "Calculo Diferencial", code: 2});
+ mattersArray.push(algebra);
+ mattersArray.push(calculo);
+// //admin
 const administrador = new Administrator({
     user: "admin",
     password: "admin",
 });
-//teachers
-const alex = new Teacher({
-    name: 'alex', 
-    password: '11', 
-    code: '11', matters: 
-    'Algebra Lineal'});
-teachersArray.push(alex);
-//students
-const sara = new Student({
-    name: 'sara', 
-    password: '22',
-    code: '22',
-    carrier: 'Diseño Visual',
-    semester: '3',
-    matters: [algebra],
-});
-// const carlos = new Student({
-//     name: 'carlos', 
-//     password: '22',
-//     code: '22',
-//     carrier: 'Ingenieria de Sistemas',
-//     semester: '1',
-//     matters: [calculo],
-// });
-studentsArray.push(sara);
-// studentsArray.push(carlos);
+// //teachers
+
+// //students
+
 //show alert for all accions
 function showAlert(message, type) {
     const container = document.querySelector('.alert-container');
@@ -102,44 +85,67 @@ function showAlert(message, type) {
         alert.remove();
     }, 1000);
 };
+
 let actualUser = {};
 let actualMatter = '';
 
-
-
-function validationLogin(code, password, array) {
-    console.log(code);
-    console.log(password);
-    let codeFind = array.find((element) => element.code == code);
-    let userpassword = false;
-    if(codeFind.password === password) {
-        userpassword = true
-    };
-    if(userpassword) {
-        console.log(codeFind);
-        actualUser = {...codeFind};
-        actualMatter = codeFind.matters;
-        return true
+function validationLoginTeacher(code, password) {
+    const codeFind = teachersArray.find((element) => element.code == code);
+    
+    if(!codeFind) {
+        console.log('error');
     } else {
-        return false
+        let userpassword = codeFind.password === password;
+        if(!userpassword) {
+            console.log('contraseña equivocada');
+            return false
+        } else {
+            actualUser = {...codeFind};
+            actualMatter = codeFind.matters
+            return true
+        }
     }
 }
+function validationLoginStudent(code, password) {
+    const codeFind = studentsArray.find((element) => element.code == code);
+    
+    if(!codeFind) {
+        console.error('error');
+    } else {
+        let userpassword = codeFind.password === password;
+        if(!userpassword) {
+            console.log('contraseña equivocada');
+            return false
+        } else {
+            actualUser = {...codeFind};
+            return true
+        }
+    }
+}
+
+let userPerMatterActual = [];
 document.getElementById('login-form')
     .addEventListener('submit', (e) => {
-        
         const inputCode = document.getElementById('user').value;
         const inputPassword = document.getElementById('password').value;
-
         if(inputCode === administrador.user && inputPassword === administrador.password) {
             console.log('bienvenido');
             location.hash = "administrador-menu";
-        } else if (validationLogin(inputCode, inputPassword, teachersArray)) {
+        } else if (validationLoginTeacher(inputCode, inputPassword)) {
+            userPerMatterActual = [];
             console.log('Bienvenido profesor');
             location.hash = "profesor-menu";
-        } else if (validationLogin(inputCode, inputPassword, studentsArray)) {
+            studentsArray.forEach((student) => {
+                const element = student.matters.find((a)=>a.name === actualMatter[0]);
+                if(element) {
+                userPerMatterActual.push(student);
+                }
+                });
+                console.log(userPerMatterActual);
+        } else if (validationLoginStudent(inputCode, inputPassword)) {
             console.log('Bienvenido estudiante');
             location.hash = "estudiante-menu";
-        } 
+        }
 
         document.getElementById('login-form').reset();
         e.preventDefault();
@@ -199,9 +205,13 @@ function viewStudent() {
             const inputSemester = document.createElement('input');
             const submit = document.createElement('input');
             inputName.setAttribute('placeholder', "Nuevo Nombre");
+            inputName.setAttribute('value', `${student.name}`);
             inputCode.setAttribute('placeholder', "Nuevo Codigo");
+            inputCode.setAttribute('value', `${student.code}`);
             inputCarrier.setAttribute('placeholder', "Nueva Carrera");
+            inputCarrier.setAttribute('value', `${student.carrier}`);
             inputSemester.setAttribute('placeholder', "Nuevo Semestre");
+            inputSemester.setAttribute('value', `${student.semester}`);
             submit.setAttribute('type', "submit");
             submit.setAttribute('value', "Editar estudiante");
             inputName.classList.add('inputEdit');
@@ -257,6 +267,9 @@ async function changeTitle(type,role) {
     } else if (type === "profesor-menu") {
         title.innerHTML = `Bienvenido al apartado ${role}`;
         paragraph.innerHTML = 'Aqui prodra asignar, editar o eliminar notas para cada estudiante de su materia';
+    } else if (type === 'estudiante-menu') {
+        title.innerHTML = `Bienvenido al apartado ${role}`;
+        paragraph.innerHTML = 'Aqui prodra consultar sus notas';
     }
 }
 
@@ -400,7 +413,9 @@ function viewTeacher() {
         const inputMatters = document.createElement('select');
         const submit = document.createElement('input');
         inputName.setAttribute('placeholder', "Nuevo Nombre");
+        inputName.setAttribute('value', `${teacher.name}`);
         inputCode.setAttribute('placeholder', "Nuevo Codigo");
+        inputCode.setAttribute('value', `${teacher.code}`);
         inputMatters.setAttribute('placeholder', "Nueva Materia");
         submit.setAttribute('type', "submit");
         submit.setAttribute('value', "Editar Profesor");
@@ -555,7 +570,9 @@ function viewMatter() {
             const inputCode = document.createElement('input');
             const submit = document.createElement('input');
             inputName.setAttribute('placeholder', "Nuevo Nombre");
+            inputName.setAttribute('value', `${matter.name}`);
             inputCode.setAttribute('placeholder', "Nuevo Codigo");
+            inputCode.setAttribute('value', `${matter.code}`);
             submit.setAttribute('type', "submit");
             submit.setAttribute('value', "Editar Profesor");
             inputName.classList.add('inputEdit');
@@ -679,10 +696,9 @@ function administradorMenuButtons() {
         viewMatter();
     })
 }
-
-function profesorMenuButtons(matter) {
+function profesorMenuButtons() {
     menuButtons.innerHTML = "";
-    studentsArray.forEach((student) => {
+    userPerMatterActual.forEach((student) => {
         const div = document.createElement('div');
         div.classList.add('menu-view-student')
         const name = document.createElement('p');
@@ -699,8 +715,20 @@ function profesorMenuButtons(matter) {
         const textcode = document.createTextNode(`Codigo de Estudiante: ${student.code}`);
         const textCarrier = document.createTextNode(`Carrera: ${student.carrier}`);
         const textSemester = document.createTextNode(`Semestre: ${student.semester}`);
-        const materia = student.matters.find((a)=>a.name === 'Algebra Lineal')
-        const notas = materia.notes.join('-');
+        let matterActual = []
+        const materia = student.matters.map((matter)=> {
+            const value = matter.name == actualUser.matters;
+            if(value) {
+                matterActual.push(matter);
+            }
+        })
+        console.group();
+        console.log(student);
+        console.log(matterActual);
+        const indexMateria = student.matters.findIndex((a)=>a.code == matterActual[0].code);
+        console.log(indexMateria);
+        console.groupEnd();
+        const notas = student.matters[indexMateria].notes.join('-');
         const textNotes = document.createTextNode(`Notas: ${notas}`)
         const botonE = document.createElement('button');
         botonE.classList.add('menu-view-teacher__edite-notes');
@@ -731,21 +759,31 @@ function profesorMenuButtons(matter) {
             const titleText = document.createTextNode(`Editar Notas para ${student.name}`);
             title.appendChild(titleText);
             //promedio
+            const notesForAverage = student.matters[indexMateria].notes;
+            const sumNotes = notesForAverage.reduce((a,b)=> a+b);
+            const averageCount = Math.trunc(sumNotes / 6);
+            student.matters[indexMateria].average = averageCount;
             const titleAverage = document.createElement('p');
             titleAverage.classList.add('edit-notes-para');
             titleAverage.innerHTML = 'El promedio del estudiante es: '
             const containerAverage = document.createElement('div');
             containerAverage.classList.add('edit-notes-average-container');
-                const averageStudent = student.matters[0].notes[0];
                 const average = document.createElement('p');
-                const averageNum = document.createTextNode(averageStudent);
+                const averageNum = document.createTextNode(averageCount);
                 average.appendChild(averageNum);
                 average.classList.add('edit-notes-average');
 
                 const result = document.createElement('p');
-                const resultNum = document.createTextNode('Aprobado');
+                let resultNum;
+                
+                if(averageCount < 30) {
+                    result.classList.add('edit-notes-result-reproved');
+                    resultNum = document.createTextNode('Reprobado');
+                } else {
+                    resultNum = document.createTextNode('Aprobado');
+                    result.classList.add('edit-notes-result-aproved');
+                }
                 result.appendChild(resultNum);
-                result.classList.add('edit-notes-result');
                 containerAverage.appendChild(average);
                 containerAverage.appendChild(result);
             //notas
@@ -765,17 +803,17 @@ function profesorMenuButtons(matter) {
             const noteSix = document.createElement('input');
             const submit = document.createElement('input');
             noteOne.setAttribute('type', 'number');
-            noteOne.setAttribute('value', `${student.matters[0].notes[0]}`);
+            noteOne.setAttribute('value', `${matterActual[0].notes[0]}`);
             noteTwo.setAttribute('type', 'number');
-            noteTwo.setAttribute('value', `${student.matters[0].notes[1]}`);
+            noteTwo.setAttribute('value', `${matterActual[0].notes[1]}`);
             noteTree.setAttribute('type', 'number');
-            noteTree.setAttribute('value', `${student.matters[0].notes[2]}`);
+            noteTree.setAttribute('value', `${matterActual[0].notes[2]}`);
             noteFour.setAttribute('type', 'number');
-            noteFour.setAttribute('value', `${student.matters[0].notes[3]}`);
+            noteFour.setAttribute('value', `${matterActual[0].notes[3]}`);
             noteFive.setAttribute('type', 'number');
-            noteFive.setAttribute('value', `${student.matters[0].notes[4]}`);
+            noteFive.setAttribute('value', `${matterActual[0].notes[4]}`);
             noteSix.setAttribute('type', 'number');
-            noteSix.setAttribute('value', `${student.matters[0].notes[5]}`);
+            noteSix.setAttribute('value', `${matterActual[0].notes[5]}`);
             submit.setAttribute('type', 'submit');
             submit.setAttribute('value', 'GUARDAR NOTAS');
             noteOne.classList.add('edit-notes-input');
@@ -801,11 +839,81 @@ function profesorMenuButtons(matter) {
             container.appendChild(form)
             sectionBackground.appendChild(container);
             todoElMain.appendChild(sectionBackground);
+            form.addEventListener('submit', (e) => {
+                student.matters[indexMateria].notes[0] = parseInt(noteOne.value);
+                student.matters[indexMateria].notes[1] = parseInt(noteTwo.value);
+                student.matters[indexMateria].notes[2] = parseInt(noteTree.value);
+                student.matters[indexMateria].notes[3] = parseInt(noteFour.value);
+                student.matters[indexMateria].notes[4] = parseInt(noteFive.value);
+                student.matters[indexMateria].notes[5] = parseInt(noteSix.value);
+                console.log(student);
+                profesorMenuButtons();
+                sectionBackground.remove();
+                e.preventDefault();
+            })
         })
     })
 }
 
-const studentFind = studentsArray.map((student) => {
-    const ve = student.matters.find((a)=>a.name == `${actualMatter}`);
-    return ve;
-})
+function studentViewNotes() {
+    menuButtons.innerHTML = "";
+        const div = document.createElement('div');
+        div.classList.add('menu-view-student')
+        const name = document.createElement('p');
+        const code = document.createElement('p');
+        const carrier = document.createElement('p');
+        const semester = document.createElement('p');
+        const notes = document.createElement('p');
+        name.classList.add('menu-view-student__name');
+        code.classList.add('menu-view-student__name');
+        carrier.classList.add('menu-view-student__name');
+        semester.classList.add('menu-view-student__name');
+        notes.classList.add('menu-view-student__name');
+        const textName = document.createTextNode(`Nombre: ${actualUser.name}`);
+        const textcode = document.createTextNode(`Codigo de Estudiante: ${actualUser.code}`);
+        const textCarrier = document.createTextNode(`Carrera: ${actualUser.carrier}`);
+        const textSemester = document.createTextNode(`Semestre: ${actualUser.semester}`);
+        const mattersdiv = document.createElement('div');
+        actualUser.matters.forEach((matter)=>{
+            const div = document.createElement('div');
+            const matterName = document.createElement('p');
+            const nameText = document.createTextNode(`${matter.name}`);
+            const notas = document.createElement('p');
+            const notasText = document.createTextNode(`Notas: ${matter.notes.join('-')}`);
+            const average = document.createElement('p');
+            const averageText = document.createTextNode(`Promedio Final: ${matter.average}`);
+            const result = document.createElement('p');
+            let resultNum;
+            if(matter.average < 30) {
+                result.classList.add('edit-notes-result-reproved');
+                resultNum = document.createTextNode('Reprobado');
+            } else {
+                resultNum = document.createTextNode('Aprobado');
+                result.classList.add('edit-notes-result-aproved');
+            }
+            result.appendChild(resultNum);
+            matterName.appendChild(nameText);
+            notas.appendChild(notasText);
+            average.appendChild(averageText);
+            div.appendChild(matterName);
+            div.appendChild(notas);
+            div.appendChild(average);
+            div.appendChild(result);
+            mattersdiv.appendChild(div)
+            div.classList.add('notes-matters-final')
+            matterName.classList.add('menu-view-student__name');
+            notas.classList.add('menu-view-student__name');
+            average.classList.add('menu-view-student__name');
+        })
+        name.appendChild(textName);
+        code.appendChild(textcode);
+        carrier.appendChild(textCarrier);
+        semester.appendChild(textSemester);
+        div.appendChild(name);
+        div.appendChild(code);
+        div.appendChild(carrier);
+        div.appendChild(semester);
+        div.appendChild(mattersdiv);
+        menuButtons.appendChild(div);
+}
+

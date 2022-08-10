@@ -60,7 +60,9 @@ function navigator() {
         profesorMenu();
     } else if(location.hash.startsWith('#estudiante-login')) {
         estudianteLogin();
-    }  else {
+    } else if(location.hash.startsWith('#estudiante-menu')) {
+        estudianteMenu();
+    } else {
         homePage();
     }
 
@@ -130,9 +132,21 @@ function profesorMenu() {
     studentsSection.classList.add('inactive');
     teachersSection.classList.add('inactive');
     mattersSection.classList.add('inactive');
-    profesorMenuButtons(); 
     changeTitle("profesor-menu", 'Profesor');
+    profesorMenuButtons(); 
 }
+function estudianteMenu() {
+    menuMain.classList.add('inactive');
+    loginSection.classList.add('inactive');
+    menuButtons.classList.remove('inactive');
+    viewMenu.classList.add('inactive');
+    studentsSection.classList.add('inactive');
+    teachersSection.classList.add('inactive');
+    mattersSection.classList.add('inactive');
+    studentViewNotes(); 
+    changeTitle("estudiante-menu", 'Estudiante');
+}
+//cosas de administrador
 function administradorStudent() {
     menuMain.classList.add('inactive');
     loginSection.classList.add('inactive');
