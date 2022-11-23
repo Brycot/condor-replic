@@ -8,7 +8,19 @@
 
 --- 
 
-Aplicación de gestion academica inspirada en la pagina academica de la universidad distrital de Francisco Jose de Caldas, utilizando POO para la creación de estudiantes, asignaturas y docentes, asi como una autorización y autenticación basica.
+Aplicación de gestion academica inspirada en la pagina academica de la universidad distrital de Francisco Jose de Caldas, utilizando POO
+
+#### Funcionalidades
+
+- creación de estudiantes.
+- creación de profesores.
+- creación de asignaturas.
+- calificación por estudiante.
+- promedio de estudiando.
+- visualización de notas.
+- asignaturas y docentes.
+- autorización basica.
+- autenticación basica.
 
 ---
 
