@@ -1,4 +1,4 @@
-# Condor Replics
+# Condor Replic
 
 --- 
 
