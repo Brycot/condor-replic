@@ -12,15 +12,15 @@ Aplicación de gestion academica inspirada en la pagina academica de la universi
 
 #### Funcionalidades
 
-- creación de estudiantes.
-- creación de profesores.
-- creación de asignaturas.
-- calificación por estudiante.
-- promedio de estudiando.
-- visualización de notas.
-- asignaturas y docentes.
-- autorización basica.
-- autenticación basica.
+- Creación de estudiantes.
+- Creación de profesores.
+- Creación de asignaturas.
+- Calificación por estudiante.
+- Promedio de estudiando.
+- Visualización de notas.
+- Asignaturas y docentes.
+- Autorización basica.
+- Autenticación basica.
 
 ---
 
